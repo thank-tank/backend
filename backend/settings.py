@@ -25,11 +25,7 @@ SECRET_KEY = 'dojm=k!ucz#tskww5ttn350^p*p5ys(5or)@m)^t-_k9mb4p=e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ '54.153.13.255',
-        '54.153.13.255:8000',
-        'ec2-54-153-13-255.us-west-1.compute.amazonaws.com',
-        'localhost'
-        ]
+ALLOWED_HOSTS = [ '*' ]
 
 
 # Application definition
@@ -79,12 +75,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
     }
 }
 
@@ -105,7 +96,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
-] 
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

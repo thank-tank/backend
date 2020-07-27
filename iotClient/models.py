@@ -4,4 +4,4 @@ from django.db import models
 
 class Sensor(models.Model):
     sensor = models.CharField(max_length=200)
-    data = models.IntegerField()
+    data = models.FloatField()

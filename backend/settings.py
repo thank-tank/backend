@@ -33,6 +33,7 @@ CSRF_COOKIE_SECURE = False
 
 INSTALLED_APPS = [
     'client.apps.ClientConfig',
+    'iotClient.apps.IotclientConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,6 +79,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db',
     }
 }
 

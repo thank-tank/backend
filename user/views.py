@@ -1,22 +1,21 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse
 import json
+from user.models import User
 
 @csrf_exempt
 def register(request):
     if request.method == "POST":
         print(request.body)
         json_data = json.loads(request.body)
-        email = json_data['email']
+        username = json_data['username']
         password = json_data['password']
         print(json_data)
-        print(email)
+        print(username)
         print(password)
-        #user = User(email=email, password=password, jwt="fake_jwt" + email)
-        user = User.objects.create_user(email=email, username=email, password=password)
+        user = User(username=username, password=password)
         user.save()
         return HttpResponse(status=201)
 
@@ -24,16 +23,16 @@ def register(request):
 def loginAttempt(request):
     print(request.body)
     json_data = json.loads(request.body)
-    email = json_data['email']
+    username = json_data['username']
     password = json_data['password']
     print(json_data)
-    print(email)
+    print(username)
     print(password)
-    user = authenticate(username=email, password=password)
+    user = authenticate(username=username, password=password)
     if user is not None:
         print('success log in')
         login(request, user)
-        return HttpResponse(user.email, status=200)
+        return HttpResponse(user.username, status=200)
     print('error log in')
     return HttpResponse(status=401)
 

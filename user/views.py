@@ -31,7 +31,6 @@ def loginAttempt(request):
     user = authenticate(username=username, password=password)
     if user is not None:
         print('success log in')
-        login(request, user)
         return HttpResponse(user.username, status=200)
     print('error log in')
     return HttpResponse(status=401)

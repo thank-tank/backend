@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, JsonResponse
 import json
 from rest_framework.authtoken.models import Token
+from rest_framework import status
+from rest_framework.response import Response
 
 
 @csrf_exempt
@@ -23,7 +25,7 @@ def register(request):
         print(username)
         user = User.objects.create_user(username=username, email=email, password=password)
         user.save()
-        return HttpResponse("success")
+        return Response(status=status.HTTP_201_CREATED)
 
 @csrf_exempt
 def loginAttempt(request):
@@ -42,10 +44,10 @@ def loginAttempt(request):
         login(request, user)
         token = Token.objects.create(user=user)
         print(token.key)
-        return HttpResponse("success logging in")
+        return Response(status=status.HTTP_202_CREATED)
     else:
         print('error log in')
-        return HttpResponse("error logging in")
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 @csrf_exempt
 def authenticationCheck(request):

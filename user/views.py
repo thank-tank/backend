@@ -1,15 +1,9 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-
-# Create your views here.
+from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse
 import json
-from rest_framework.authtoken.models import Token
-from rest_framework import status
-from rest_framework.response import Response
-
 
 @csrf_exempt
 def register(request):
@@ -18,14 +12,13 @@ def register(request):
         json_data = json.loads(request.body)
         email = json_data['email']
         password = json_data['password']
-        username = json_data['username']
         print(json_data)
         print(email)
         print(password)
-        print(username)
-        user = User.objects.create_user(username=username, email=email, password=password)
+        #user = User(email=email, password=password, jwt="fake_jwt" + email)
+        user = User.objects.create_user(email=email, username=email, password=password)
         user.save()
-        return Response(status=status.HTTP_201_CREATED)
+        return HttpResponse(status=201)
 
 @csrf_exempt
 def loginAttempt(request):
@@ -33,21 +26,16 @@ def loginAttempt(request):
     json_data = json.loads(request.body)
     email = json_data['email']
     password = json_data['password']
-    username = json_data['username']
     print(json_data)
     print(email)
     print(password)
-    print(username)
-    user = authenticate(username=username, email=email, password=password)
+    user = authenticate(username=email, password=password)
     if user is not None:
         print('success log in')
         login(request, user)
-        token = Token.objects.create(user=user)
-        print(token.key)
-        return Response(status=status.HTTP_202_CREATED)
-    else:
-        print('error log in')
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
+        return HttpResponse(user.email, status=200)
+    print('error log in')
+    return HttpResponse(status=401)
 
 @csrf_exempt
 def authenticationCheck(request):

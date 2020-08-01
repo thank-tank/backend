@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login
 # Create your views here.
 from django.http import HttpResponse, JsonResponse
 import json
+from rest_framework.authtoken.models import Token
 
 
 @csrf_exempt
@@ -39,6 +40,8 @@ def loginAttempt(request):
     if user is not None:
         print('success log in')
         login(request, user)
+        token = Token.objects.create(user=user)
+        print(token.key)
         return HttpResponse("success logging in")
     else:
         print('error log in')

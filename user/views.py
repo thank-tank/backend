@@ -27,9 +27,14 @@ def loginAttempt(request):
     print(json_data)
     print(username)
     print(password)
-    user = User.objects.filter(username=username).filter(password=password)
+    user = User.objects.get(username=username)
     if user is not None:
         print('success log in')
-        return HttpResponse(status=200)
+        print(user)
+        return JsonResponse({'id': str(user.id)})
     print('error log in')
     return HttpResponse(status=401)
+
+@csrf_exempt
+def get_users(request):
+    return JsonResponse({'users': list(User.objects.all().values())})

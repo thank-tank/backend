@@ -33,7 +33,7 @@ CSRF_COOKIE_SECURE = False
 
 INSTALLED_APPS = [
     'client.apps.ClientConfig',
-    'post.apps.PostConfig',
+    'drop.apps.DropConfig',
     'user.apps.UserConfig',
     'iotClient.apps.IotclientConfig',
     'django.contrib.admin',

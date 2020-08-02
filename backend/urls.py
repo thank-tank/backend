@@ -21,5 +21,5 @@ urlpatterns = [
     path('user/', include('user.urls')),
     path('client/', include('client.urls')),
     path('iotClient/', include('iotClient.urls')),
-    path('post/', include('post.urls')),
+    path('drop/', include('drop.urls')),
 ]

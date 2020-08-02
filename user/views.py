@@ -33,13 +33,3 @@ def loginAttempt(request):
         return HttpResponse(status=200)
     print('error log in')
     return HttpResponse(status=401)
-
-@csrf_exempt
-def authenticationCheck(request):
-    print(request.user)
-    if request.user.is_authenticated:
-        print("is auth")
-        return HttpResponse("is authenticated")
-    else:
-        print("is not auth")
-        return HttpResponse("is not authenticated")

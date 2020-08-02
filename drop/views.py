@@ -35,15 +35,26 @@ def get_ocean(request):
         ocean = Drop.objects.all().order_by('-pub_data').values()
         for drop in ocean:
             drip = Drip.objects.filter(drop_id=drop['id']).values()
-            drop['username'] = User.objects.get(id=drip['user_id']).username
+            drop['username'] = User.objects.get(id=drop['user_id']).username
             drop['drip_stream'] = list(drip)
-        return JsonResponse({"ocean": list(drop)})
+        return JsonResponse({"ocean": list(ocean)})
+
+@csrf_exempt
+def get_user_stream(request, username):
+    if request.method == "GET":
+        user = User.objects.get(username=username)
+        ocean = Drop.objects.all().filter(user_id=user.id).order_by('-pub_data').values()
+        for drop in ocean:
+            drip = Drip.objects.filter(drop_id=drop['id']).values()
+            drop['username'] = User.objects.get(id=drop['user_id']).username
+            drop['drip_stream'] = list(drip)
+        return JsonResponse({"ocean": list(ocean)})
 
 @csrf_exempt
 def get_drop(request, drop_id):
     print("GET DROP")
     if request.method == "GET":
-        drop = drop.objects.get(id=drop_id)
+        drop = Drop.objects.get(id=drop_id)
         print(drop)
         ret = {
             "username": drop.user.username,

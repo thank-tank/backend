@@ -32,10 +32,8 @@ CSRF_COOKIE_SECURE = False
 # Application definition
 
 INSTALLED_APPS = [
-    'client.apps.ClientConfig',
     'drop.apps.DropConfig',
     'user.apps.UserConfig',
-    'iotClient.apps.IotclientConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

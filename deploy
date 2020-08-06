@@ -22,8 +22,8 @@ then
 elif [ $ARG = "dev" ]
 then
     echo "Deploying Development...";
-    sudo docker-compose -f docker-compose.prod.yml down;
-    sudo docker-compose -f docker-compose.prod.yml up -d;
+    sudo docker-compose -f docker-compose.dev.yml down;
+    sudo docker-compose -f docker-compose.dev.yml up -d;
 elif [ $ARG = "cert" ]
 then
     echo "Configuring Security Certificates...";

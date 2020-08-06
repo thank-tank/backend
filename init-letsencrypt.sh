@@ -5,7 +5,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(thanktank.app)
+domains=(thanktank.app www.thanktank.app)
 rsa_key_size=4096
 data_path="./data/certbot"
 email="benkim96@gmail.com" # Adding a valid address is strongly recommended

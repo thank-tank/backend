@@ -9,4 +9,6 @@ Run `./deploy dev` to create backend on machines with no NGINX/CertBot/Https pro
 ### Production
 Run `./deploy prod` to create backend on machines with NGINX/CertBot/Https protection.
 
-### 
+### Logging
+Run `./deploy logs {dev|prod}` to follow your containers' logs.
+Run `./deploy {dev|prod} -f` to follow your containers' logs during build.

@@ -7,7 +7,8 @@ The `deploy.sh` script buidls the backend api in different deployment flavors. I
 Run `./deploy.sh dev` to create backend on machines with no NGINX/CertBot/Https protection.
 
 ### Production
-Run `./deploy.sh prod` to create backend on machines with NGINX/CertBot/Https protection.
+Run `./deploy.sh cert` to generate security certificates for HTTPS.
+Run `./deploy.sh prod` to create backend on machines with NGINX webserver and Security Certificate renewal.
 
 ### Logging
 Run `./deploy.sh logs {dev|prod}` to follow your containers' logs.

@@ -40,10 +40,6 @@ then
     then
         docker-compose -f docker-compose.dev.yml logs -f;
     fi
-elif [ $ARG = "cert" ]
-then
-    echo "Configuring Security Certificates...";
-    sudo ./init-letsencrypt.sh
 elif [ $ARG = "logs" ]
 then
     echo "Running Logs...";

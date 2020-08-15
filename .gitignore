@@ -1,4 +1,6 @@
 backend/__pycache__/
 *.pyc
 db
-data/certbot
+data/cert
+.key
+.crt

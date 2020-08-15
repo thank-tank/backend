@@ -2,5 +2,5 @@ backend/__pycache__/
 *.pyc
 db
 data/cert
-.key
-.crt
+*.key
+*.crt
